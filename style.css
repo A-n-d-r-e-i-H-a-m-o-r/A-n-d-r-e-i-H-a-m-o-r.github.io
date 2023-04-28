@@ -1,0 +1,328 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+
+    /* define variables with -- first 
+        then use it with var(varname)
+    
+    */
+
+    --mainColor: black;
+    --default_size : 100px;
+
+}
+
+/*  Padding creates extra space within an element,
+ while margin creates extra space around an element!
+ 
+ If the padding property has four values:
+
+padding: 10px 5px 15px 20px;
+top padding is 10px
+right padding is 5px
+bottom padding is 15px
+left padding is 20px
+
+If the padding property has three values:
+
+padding: 10px 5px 15px;
+top padding is 10px
+right and left padding are 5px
+bottom padding is 15px
+
+If the padding property has two values:
+
+padding: 10px 5px;
+top and bottom padding are 10px
+right and left padding are 5px
+If the padding property has one value:
+
+padding: 10px;
+all four paddings are 10px
+ 
+ 
+ */ 
+
+
+
+body{
+    background-color: bisque;
+    
+    
+
+}
+nav {
+    width: 100%;
+    height: 80px;
+    background-color: black;
+    position: sticky;
+    top: 0px;
+    
+}
+
+.yum{
+
+    position: relative;
+
+/* static   -   Default value. Elements render in order, as they appear in the document flow
+                it is the only one that doesn't act as an anchor to its child element
+absolute	-   The element is positioned relative to its first positioned (not static) ancestor element	
+fixed	    -   The element is positioned relative to the browser window	
+relative	-   The element is positioned relative to its normal position, so "left:20px" 
+                adds 20 pixels to the element's LEFT position	
+sticky	    -   The element is positioned based on the user's scroll position
+                A sticky element toggles between relative and fixed, depending on the scroll position. 
+                It is positioned relative until a given offset position is met in the viewport - 
+                then it "sticks" in place (like position:fixed).
+
+see reference here: file:///E:/W3Schools-2022-09-06/cssref/tryita44b.html?filename=trycss_position2
+*/
+    
+    animation: animate 1s ease-in-out infinite;
+    /* border: 2px solid black; */
+
+    /* animation: name, duration, timing-function, delay, 
+    iteration-count, direction, fill-mode, play-state; */
+}
+
+.main-div{
+   
+
+    width: 100%;
+    height: 100vh;
+    /*  UNITS
+    ABSOLUTE UNITS (NOT RECOMMENDED)
+        cm	    centimeters
+        mm	    millimeters
+        in	    inches (1in = 96px = 2.54cm)
+        px *	pixels (1px = 1/96th of 1in)
+        pt	    points (1pt = 1/72 of 1in)
+        pc	    picas (1pc = 12 pt)
+
+    RELATIVE UNITS
+        em	    Relative to the font-size of the element (2em means 2 times the size of the current font)	
+        ex	    Relative to the x-height of the current font (rarely used)	
+        ch	    Relative to the width of the "0" (zero)	
+        rem	    Relative to font-size of the root element	
+        vw	    Relative to 1% of the width of the viewport*	
+        vh	    Relative to 1% of the height of the viewport*	
+        vmin	Relative to 1% of viewport's* smaller dimension	
+        vmax	Relative to 1% of viewport's* larger dimension	
+        %	    Relative to the parent element */
+
+    display: grid;
+    place-items: center;
+
+    overflow: hidden;
+     /* NOTE: OVERFLOW CONTROLS CONTENT THAT IS BEYOND ITS CONTAINER */
+
+    position: absolute;
+
+   
+
+
+
+    /* DISPLAY PARAMETERS
+    inline	  -     Displays an element as an inline element (like <span>). Any height and width properties will have no effect	
+    block	  -     Displays an element as a block element (like <p>). It starts on a new line, and takes up the whole width	
+    contents  -     Makes the container disappear, making the child elements children of the element the next level up in the DOM	
+    flex	  -     Displays an element as a block-level flex container	
+    grid	  -     Displays an element as a block-level grid container	
+    inline-block	Displays an element as an inline-level block container. The element itself is formatted as an inline element, but you can apply height and width values	
+    inline-flex	    Displays an element as an inline-level flex container	
+    inline-grid	    Displays an element as an inline-level grid container	
+    inline-table	The element is displayed as an inline-level table	
+    list-item	    Let the element behave like a <li> element	
+    run-in	        Displays an element as either block or inline, depending on context	
+    table	        Let the element behave like a <table> element	
+    table-caption	Let the element behave like a <caption> element	
+    table-column-group	Let the element behave like a <colgroup> element	
+    table-header-group	Let the element behave like a <thead> element	
+    table-footer-group	Let the element behave like a <tfoot> element	
+    table-row-group	    Let the element behave like a <tbody> element	
+    table-cell	        Let the element behave like a <td> element	
+    table-column	    Let the element behave like a <col> element	
+    table-row	        Let the element behave like a <tr> element	
+    none	            The element is completely removed	
+    initial	            Sets this property to its default value. Read about initial	
+    inherit	            Inherits this property from its parent element. Read about inherit */   
+    
+    
+
+    /* 
+    
+    note: justify-content and align items depends on flex-direction 
+
+    flex-flow: row;           <======= FLEX-DIRECTION: ROW;
+    justify-content: center;  <======= CENTER HORIZONTALLY
+    align-items: center;      <======= CENTER VERTICALLY
+    
+    flex-flow: column;        <======= FLEX-DIRECTION: COLUMN
+    justify-content: center;  <======= CENTER VERTICALLY
+    align-items: center;      <======= CENTER HORIZONTALLY
+    
+    
+    note: ALIGN-CONTENT WORKS JUST LIKE ALIGN-ITEMS BUT ONLY IF ITS WRAP
+    */
+
+
+
+
+    /*TO CENTER HORIZONTALLY*/
+
+    /* justify-content: flex-start|flex-end|center|space-between|space-around|space-evenly|initial|inherit; 
+    The justify-content property aligns the FLEX CONTAINER items when the items do
+     not use all available space on the main-axis (horizontally).
+     
+     
+    */
+
+    /* JUSTIFY-CONTENT PARAMETER
+
+        flex-start	-  Default value. Items are positioned at the beginning of the container	
+        flex-end	-  Items are positioned at the end of the container	
+        center	    -  Items are positioned in the center of the container	
+        space-between	-  Items will have space between them	
+        space-around	-  Items will have space before, between, and after them	
+        space-evenly	-  Items will have equal space around them	
+        initial	 -  Sets this property to its default value. Read about initial	
+        inherit	 -  Inherits this property from its parent element. Read about inherit
+
+        */
+
+    /*TO CENTER VERTICALLY*/
+
+     /* align-items: stretch|center|flex-start|flex-end|baseline|initial|inherit; 
+     
+     The align-items property specifies the default alignment for items
+      inside the flexible container. 
+     
+     
+     
+     */
+     /* flex: flex-grow flex-shrink flex-basis */
+     /* flex-flow: flex-direction flex-wrap */
+    
+}
+
+#left-side{
+
+    background-color: rgb(3, 30, 90);
+    z-index: 2;
+    /* The z-index property specifies the stack order of an element.
+        IT IS THE PRIORITY OF AN ELEMENT IN ORDER: HIGHER NUMBER, HIGHER DISPLAY PRIORITY 
+    
+    */
+
+}
+
+#left-side .title{
+
+    color: white;
+}
+
+#right-side{
+
+    background-color: white;
+
+}
+
+#right-side .title{
+
+    color: black;
+}
+
+ .title{
+
+    font-size: 60px;
+    font-family: "Roboto";
+    text-align: center;
+    margin: 0px 25vw;
+    width: 50vw;
+
+
+
+}
+
+.title2{
+
+    font-size: 60px;
+    font-family: "Roboto";
+
+
+}
+
+
+.other{
+    display: flex;
+    height: 100vh;
+    width: 100%;
+
+    
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+h1::selection{
+
+    background: black;
+    color: red;
+
+}
+
+
+ul li {
+    display: inline-block;
+    list-style: none;
+    line-height: 80px;
+    float: left;
+    width: calc(100%/3);
+    text-align: center;
+    
+    
+}
+
+ul li a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    font-family: "Roboto";
+    font-size: 18px;
+    padding: 0 20px;
+
+    transition: background-color 0.5s;
+
+    
+    /* transition: CSS property, duration, timing-function, delay;
+
+    The transition-property property specifies the name of the CSS PROPERTY the transition effect is for 
+    (the transition effect will start when the specified CSS property changes).
+    
+    Tip: A transition effect could typically occur when a user hover over an element. */
+    
+
+}
+
+
+
+
+ul li a:hover {
+    background-color: white;
+    color: black;
+}
+
+
+
+
+
+@keyframes animate {
+    from{bottom: 0px;}
+    50%{bottom: 15px}
+    to{bottom: 0px;}
+}
