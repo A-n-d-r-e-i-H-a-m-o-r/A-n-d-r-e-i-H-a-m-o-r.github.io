@@ -1,0 +1,562 @@
+[
+  {
+    "title": "Two Sum",
+    "difficulty": "easy",
+    "description": "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. You may assume that each input would have exactly one solution, and you may not use the same element twice.",
+    "example": "Input: nums = [2,7,11,15], target = 9\nOutput: [0,1]\nExplanation: Because nums[0] + nums[1] == 9, we return [0, 1].",
+    "question": "What is the most efficient approach to solve this problem?",
+    "options": [
+      "Brute force - check all pairs",
+      "Hash map - store complements",
+      "Sort array then use two pointers",
+      "Binary search for each element"
+    ],
+    "correct": 1,
+    "explanation": "Using a hash map is optimal. As we iterate through the array, we store each number and its index. For each element, we check if its complement (target - current) exists in the hash map. This gives us O(n) time complexity and O(n) space complexity."
+  },
+  {
+    "title": "Valid Parentheses",
+    "difficulty": "easy",
+    "description": "Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid. An input string is valid if: Open brackets must be closed by the same type of brackets and in the correct order.",
+    "example": "Input: s = '()[]{}'\nOutput: true\n\nInput: s = '([)]'\nOutput: false",
+    "question": "Which data structure is best suited for this problem?",
+    "options": [
+      "Queue - process characters in FIFO order",
+      "Stack - match opening and closing brackets",
+      "Hash Map - count bracket frequencies",
+      "Two pointers - scan from both ends"
+    ],
+    "correct": 1,
+    "explanation": "A stack is perfect for this problem because we need to match the most recent opening bracket with its closing counterpart (LIFO behavior). Push opening brackets onto the stack, and for closing brackets, check if they match the top of the stack."
+  },
+  {
+    "title": "Maximum Subarray",
+    "difficulty": "medium",
+    "description": "Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.",
+    "example": "Input: nums = [-2,1,-3,4,-1,2,1,-5,4]\nOutput: 6\nExplanation: [4,-1,2,1] has the largest sum = 6.",
+    "question": "What algorithm efficiently solves this problem in O(n) time?",
+    "options": [
+      "Divide and conquer approach",
+      "Kadane's algorithm (dynamic programming)",
+      "Sliding window technique",
+      "Prefix sum with binary search"
+    ],
+    "correct": 1,
+    "explanation": "Kadane's algorithm is the optimal solution. It uses dynamic programming to track the maximum sum ending at each position. At each step, we decide whether to extend the existing subarray or start a new one by comparing current element with (current element + previous maximum)."
+  },
+  {
+    "title": "Binary Tree Level Order Traversal",
+    "difficulty": "medium",
+    "description": "Given the root of a binary tree, return the level order traversal of its nodes' values (i.e., from left to right, level by level).",
+    "example": "Input: root = [3,9,20,null,null,15,7]\nOutput: [[3],[9,20],[15,7]]",
+    "question": "Which approach is most suitable for level-order traversal?",
+    "options": [
+      "Depth-First Search (DFS) with recursion",
+      "Breadth-First Search (BFS) with queue",
+      "In-order traversal with stack",
+      "Pre-order traversal with level tracking"
+    ],
+    "correct": 1,
+    "explanation": "BFS with a queue is ideal for level-order traversal. We process nodes level by level, adding children to the queue as we visit each node. We can track level boundaries by processing all nodes at the current level before moving to the next."
+  },
+  {
+    "title": "Longest Increasing Subsequence",
+    "difficulty": "medium",
+    "description": "Given an integer array nums, return the length of the longest strictly increasing subsequence.",
+    "example": "Input: nums = [10,9,2,5,3,7,101,18]\nOutput: 4\nExplanation: The longest increasing subsequence is [2,3,7,18], therefore the length is 4.",
+    "question": "What's the most efficient approach for this problem?",
+    "options": [
+      "Dynamic programming O(n²) solution",
+      "Binary search with patience sorting",
+      "Greedy approach with sorting",
+      "Recursive solution with memoization"
+    ],
+    "correct": 1,
+    "explanation": "Binary search with patience sorting (also called the patience game approach) is optimal. We maintain an array where each position represents the smallest tail element of increasing subsequences of that length. For each new element, we use binary search to find its position, achieving O(n log n) time complexity."
+  },
+  {
+    "title": "Climbing Stairs",
+    "difficulty": "easy",
+    "description": "You are climbing a staircase. It takes n steps to reach the top. Each time you can climb either 1 or 2 steps. In how many distinct ways can you climb to the top?",
+    "example": "Input: n = 3\nOutput: 3\nExplanation: There are three ways to climb to the top.\n1. 1 step + 1 step + 1 step\n2. 1 step + 2 steps\n3. 2 steps + 1 step",
+    "question": "What approach solves this problem efficiently?",
+    "options": [
+      "Brute force recursion",
+      "Dynamic programming (Fibonacci relation)",
+      "Greedy approach",
+      "Backtracking with pruning"
+    ],
+    "correct": 1,
+    "explanation": "This problem follows the Fibonacci sequence. Dynamic programming (bottom-up or top-down with memoization) provides an O(n) time and O(1)/O(n) space solution."
+  },
+  {
+    "title": "Merge Intervals",
+    "difficulty": "medium",
+    "description": "Given an array of intervals where intervals[i] = [starti, endi], merge all overlapping intervals and return an array of the non-overlapping intervals.",
+    "example": "Input: intervals = [[1,3],[2,6],[8,10],[15,18]]\nOutput: [[1,6],[8,10],[15,18]]",
+    "question": "Which technique ensures correct merging?",
+    "options": [
+      "Sort intervals by start, then merge sequentially",
+      "Use a priority queue to merge",
+      "Binary search for overlaps",
+      "Greedy approach with hash set"
+    ],
+    "correct": 0,
+    "explanation": "Sorting by start time and then merging overlapping intervals sequentially is the optimal solution. Time complexity is O(n log n) due to sorting."
+  },
+  {
+    "title": "Search in Rotated Sorted Array",
+    "difficulty": "medium",
+    "description": "Suppose an array is sorted in ascending order and rotated at some pivot. Given a target value, return its index or -1 if it is not found.",
+    "example": "Input: nums = [4,5,6,7,0,1,2], target = 0\nOutput: 4",
+    "question": "What is the most efficient approach?",
+    "options": [
+      "Linear search",
+      "Binary search with pivot check",
+      "Sorting then binary search",
+      "Hash map lookup"
+    ],
+    "correct": 1,
+    "explanation": "A modified binary search works by determining which side of the array is sorted at each step and narrowing the search. Runs in O(log n) time."
+  },
+  {
+    "title": "Top K Frequent Elements",
+    "difficulty": "medium",
+    "description": "Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.",
+    "example": "Input: nums = [1,1,1,2,2,3], k = 2\nOutput: [1,2]",
+    "question": "Which method achieves better than O(n log n) time?",
+    "options": [
+      "Sorting by frequency",
+      "Heap (priority queue)",
+      "Bucket sort",
+      "Binary search on frequency"
+    ],
+    "correct": 2,
+    "explanation": "Using bucket sort achieves O(n) average time since frequencies are bounded by array size. A heap-based solution works in O(n log k)."
+  },
+  {
+    "title": "Word Break",
+    "difficulty": "medium",
+    "description": "Given a string s and a dictionary of words wordDict, return true if s can be segmented into a space-separated sequence of one or more dictionary words.",
+    "example": "Input: s = 'leetcode', wordDict = ['leet','code']\nOutput: true",
+    "question": "Which approach solves this efficiently?",
+    "options": [
+      "Backtracking with recursion only",
+      "Dynamic programming with substring checks",
+      "Binary search in wordDict",
+      "Greedy scan from left to right"
+    ],
+    "correct": 1,
+    "explanation": "Dynamic programming is optimal. dp[i] = true if substring(0, i) can be segmented. Checking all words at each position gives O(n^2) time complexity."
+  },
+  {
+    "title": "Course Schedule",
+    "difficulty": "medium",
+    "description": "There are numCourses courses you have to take, labeled from 0 to numCourses-1. Some courses may have prerequisites. Determine if you can finish all courses.",
+    "example": "Input: numCourses = 2, prerequisites = [[1,0]]\nOutput: true",
+    "question": "Which algorithm detects cycles in course prerequisites?",
+    "options": [
+      "Depth-First Search (DFS) cycle detection",
+      "Breadth-First Search (BFS) with queue",
+      "Dynamic programming",
+      "Greedy scheduling"
+    ],
+    "correct": 0,
+    "explanation": "This is a graph cycle detection problem. DFS (or BFS with topological sort) checks for cycles. If a cycle exists, it is impossible to finish all courses."
+  },
+  {
+    "title": "Median of Two Sorted Arrays",
+    "difficulty": "hard",
+    "description": "Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).",
+    "example": "Input: nums1 = [1,3], nums2 = [2]\nOutput: 2.0",
+    "question": "Which approach achieves the required time complexity?",
+    "options": [
+      "Merge both arrays then find median",
+      "Binary search partitioning method",
+      "Sliding window over merged arrays",
+      "Randomized quickselect"
+    ],
+    "correct": 1,
+    "explanation": "The binary search partitioning approach ensures O(log(min(m,n))) time. We partition the arrays so that all elements on the left are smaller than those on the right, then compute the median from partition edges."
+  },
+  {
+    "title": "Trapping Rain Water",
+    "difficulty": "hard",
+    "description": "Given n non-negative integers representing elevation map where the width of each bar is 1, compute how much water it can trap after raining.",
+    "example": "Input: height = [0,1,0,2,1,0,1,3,2,1,2,1]\nOutput: 6",
+    "question": "What is the optimal technique to solve this?",
+    "options": [
+      "Brute force with nested loops",
+      "Precompute left and right max arrays",
+      "Two pointers moving inward",
+      "Stack-based water trapping"
+    ],
+    "correct": 2,
+    "explanation": "The two-pointer method runs in O(n) time and O(1) space. We maintain leftMax and rightMax while moving pointers inward, accumulating trapped water based on the smaller side."
+  },
+  {
+    "title": "N-Queens",
+    "difficulty": "hard",
+    "description": "The n-queens puzzle is the problem of placing n queens on an n x n chessboard such that no two queens attack each other.",
+    "example": "Input: n = 4\nOutput: [[\".Q..\",\"...Q\",\"Q...\",\"..Q.\"] , [\"..Q.\",\"Q...\",\"...Q\",\".Q..\"]]",
+    "question": "Which algorithm is typically used to solve this?",
+    "options": [
+      "Dynamic programming with memoization",
+      "Greedy placement strategy",
+      "Backtracking with pruning",
+      "Divide and conquer"
+    ],
+    "correct": 2,
+    "explanation": "Backtracking with pruning is the standard approach. We try to place queens row by row, discarding placements that lead to conflicts in columns or diagonals."
+  },
+  {
+    "title": "Best Time to Buy and Sell Stock",
+    "difficulty": "easy",
+    "description": "You are given an array prices where prices[i] is the price of a stock on the ith day. You want to maximize your profit by choosing a single day to buy and a different day in the future to sell.",
+    "example": "Input: prices = [7,1,5,3,6,4]\nOutput: 5\nExplanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.",
+    "question": "What approach efficiently solves this problem?",
+    "options": [
+      "Check all pairs of buy/sell days",
+      "Dynamic programming with state tracking",
+      "Single pass tracking min price and max profit",
+      "Greedy by sorting prices"
+    ],
+    "correct": 2,
+    "explanation": "We can solve it in O(n) by tracking the minimum price so far and calculating profit at each step. Update the max profit accordingly."
+  },
+  {
+    "title": "Unique Paths",
+    "difficulty": "medium",
+    "description": "A robot is located at the top-left corner of an m x n grid. The robot can only move either down or right at any point. Find the number of possible unique paths to reach the bottom-right corner.",
+    "example": "Input: m = 3, n = 2\nOutput: 3\nExplanation: There are three paths: Right -> Down -> Down, Down -> Down -> Right, Down -> Right -> Down.",
+    "question": "Which method gives an efficient solution?",
+    "options": [
+      "Backtracking with all possible moves",
+      "Dynamic programming (grid filling)",
+      "Greedy algorithm",
+      "Graph BFS"
+    ],
+    "correct": 1,
+    "explanation": "Dynamic programming is optimal. dp[i][j] = dp[i-1][j] + dp[i][j-1]. This computes the number of paths in O(m*n)."
+  },
+  {
+    "title": "Implement Trie (Prefix Tree)",
+    "difficulty": "medium",
+    "description": "Implement a trie with insert, search, and startsWith methods.",
+    "example": "Input: [\"Trie\",\"insert\",\"search\",\"search\",\"startsWith\",\"insert\",\"search\"]\n[[ ],[\"apple\"],[\"apple\"],[\"app\"],[\"app\"],[\"app\"],[\"app\"]]\nOutput: [null,null,true,false,true,null,true]",
+    "question": "What data structure is best suited for this?",
+    "options": [
+      "Binary Search Tree",
+      "Hash Map of strings",
+      "Prefix Tree using nodes",
+      "Dynamic array of substrings"
+    ],
+    "correct": 2,
+    "explanation": "A Trie (prefix tree) efficiently stores words by characters. Each node represents one character, allowing O(L) operations where L is the word length."
+  },
+  {
+    "title": "Kth Largest Element in an Array",
+    "difficulty": "medium",
+    "description": "Find the kth largest element in an unsorted array. Note that it is the kth largest element in sorted order, not the kth distinct element.",
+    "example": "Input: nums = [3,2,1,5,6,4], k = 2\nOutput: 5",
+    "question": "What is the most efficient approach?",
+    "options": [
+      "Sort the array then index",
+      "Heap (priority queue)",
+      "Quickselect",
+      "Binary search with prefix sums"
+    ],
+    "correct": 2,
+    "explanation": "Quickselect (based on quicksort partitioning) achieves O(n) average time. A heap works in O(n log k). Sorting is O(n log n)."
+  },
+  {
+    "title": "Valid Anagram",
+    "difficulty": "easy",
+    "description": "Given two strings s and t, return true if t is an anagram of s, and false otherwise.",
+    "example": "Input: s = \"anagram\", t = \"nagaram\"\nOutput: true\n\nInput: s = \"rat\", t = \"car\"\nOutput: false",
+    "question": "Which method solves this efficiently?",
+    "options": [
+      "Sort both strings and compare",
+      "Use Hash Map / Counter",
+      "Two pointers",
+      "Stack for matching characters"
+    ],
+    "correct": 1,
+    "explanation": "Using a hash map (or frequency counter) is optimal. Count character occurrences in both strings and compare. Time O(n)."
+  },
+  {
+    "title": "Serialize and Deserialize Binary Tree",
+    "difficulty": "hard",
+    "description": "Design an algorithm to serialize and deserialize a binary tree. Serialization is converting a tree into a string, and deserialization is the reverse.",
+    "example": "Input: root = [1,2,3,null,null,4,5]\nSerialized: \"1,2,null,null,3,4,null,null,5,null,null\"",
+    "question": "What is the best general approach?",
+    "options": [
+      "In-order traversal only",
+      "Level-order traversal with null markers",
+      "Store preorder and inorder arrays",
+      "Hash map of parent-child relationships"
+    ],
+    "correct": 1,
+    "explanation": "Level-order (BFS) with null markers preserves structure. Preorder with nulls also works. Both allow unique reconstruction."
+  },
+  {
+    "title": "Minimum Window Substring",
+    "difficulty": "hard",
+    "description": "Given two strings s and t, return the minimum window substring of s such that every character in t is included in the window.",
+    "example": "Input: s = \"ADOBECODEBANC\", t = \"ABC\"\nOutput: \"BANC\"",
+    "question": "Which algorithm efficiently solves this?",
+    "options": [
+      "Brute force substring check",
+      "Dynamic programming with substring states",
+      "Sliding window with hash maps",
+      "Two pointers expanding outward"
+    ],
+    "correct": 2,
+    "explanation": "Sliding window with two pointers and hash maps efficiently finds the minimum substring containing all characters. Runs in O(n)."
+  },
+  {
+    "title": "Regular Expression Matching",
+    "difficulty": "hard",
+    "description": "Implement regular expression matching with support for '.' and '*' where '.' matches any single character and '*' matches zero or more of the preceding element.",
+    "example": "Input: s = \"aab\", p = \"c*a*b\"\nOutput: true",
+    "question": "What is the optimal solution?",
+    "options": [
+      "Greedy scan",
+      "Backtracking recursion only",
+      "Dynamic programming",
+      "Convert regex to NFA"
+    ],
+    "correct": 2,
+    "explanation": "Dynamic programming is optimal. dp[i][j] indicates if s[0..i) matches p[0..j). This handles '.' and '*' efficiently in O(m*n)."
+  },
+  {
+    "title": "Set Matrix Zeroes",
+    "difficulty": "medium",
+    "description": "Given an m x n integer matrix, if an element is 0, set its entire row and column to 0. Do it in-place.",
+    "example": "Input: matrix = [[1,1,1],[1,0,1],[1,1,1]]\nOutput: [[1,0,1],[0,0,0],[1,0,1]]",
+    "question": "What is the most space-efficient approach?",
+    "options": [
+      "Use a copy of the matrix",
+      "Use two auxiliary arrays",
+      "Use the first row/col as markers",
+      "Recursively zero rows/cols"
+    ],
+    "correct": 2,
+    "explanation": "We can use the first row and column as markers to avoid extra O(m+n) space. The algorithm runs in O(m*n) with O(1) extra space."
+  },
+  {
+    "title": "Product of Array Except Self",
+    "difficulty": "medium",
+    "description": "Given an integer array nums, return an array answer such that answer[i] is the product of all the elements of nums except nums[i]. You must write an algorithm that runs in O(n) and without using the division operation.",
+    "example": "Input: nums = [1,2,3,4]\nOutput: [24,12,8,6]",
+    "question": "What approach achieves O(1) extra space?",
+    "options": [
+      "Compute prefix and suffix arrays separately",
+      "Use division then adjust for zeros",
+      "Two-pass prefix and suffix product with one array",
+      "Recursion with memoization"
+    ],
+    "correct": 2,
+    "explanation": "We can compute prefix products in one pass and suffix products in another, storing results directly in the output array. Achieves O(n) time and O(1) extra space."
+  },
+  {
+    "title": "Rotate Image",
+    "difficulty": "medium",
+    "description": "You are given an n x n 2D matrix representing an image. Rotate the image by 90 degrees (clockwise), in place.",
+    "example": "Input: [[1,2,3],[4,5,6],[7,8,9]]\nOutput: [[7,4,1],[8,5,2],[9,6,3]]",
+    "question": "What is the standard method?",
+    "options": [
+      "Transpose then reverse rows",
+      "Transpose then reverse columns",
+      "Reverse diagonals only",
+      "Extra array rotation"
+    ],
+    "correct": 0,
+    "explanation": "The in-place method is: first transpose the matrix, then reverse each row. This results in a 90° rotation."
+  },
+  {
+    "title": "Spiral Matrix",
+    "difficulty": "medium",
+    "description": "Given an m x n matrix, return all elements of the matrix in spiral order.",
+    "example": "Input: [[1,2,3],[4,5,6],[7,8,9]]\nOutput: [1,2,3,6,9,8,7,4,5]",
+    "question": "What technique is most suitable?",
+    "options": [
+      "Depth-first traversal",
+      "Boundary tracking with loops",
+      "Backtracking recursion",
+      "Sorting indices diagonally"
+    ],
+    "correct": 1,
+    "explanation": "We can simulate the spiral by maintaining boundaries (top, bottom, left, right) and iteratively traversing each edge until boundaries overlap."
+  },
+  {
+    "title": "Subsets",
+    "difficulty": "medium",
+    "description": "Given an integer array nums of unique elements, return all possible subsets (the power set).",
+    "example": "Input: nums = [1,2,3]\nOutput: [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]",
+    "question": "What approach generates subsets efficiently?",
+    "options": [
+      "Backtracking recursion",
+      "Greedy approach",
+      "Two pointers",
+      "Dynamic programming"
+    ],
+    "correct": 0,
+    "explanation": "Backtracking is the most natural solution. At each step, we choose to include or exclude an element. This generates all 2^n subsets."
+  },
+  {
+    "title": "Combination Sum",
+    "difficulty": "medium",
+    "description": "Given an array of distinct integers candidates and a target integer target, return a list of all unique combinations of candidates where the chosen numbers sum to target. You may use each number unlimited times.",
+    "example": "Input: candidates = [2,3,6,7], target = 7\nOutput: [[2,2,3],[7]]",
+    "question": "Which technique solves this?",
+    "options": [
+      "Greedy search",
+      "Backtracking with pruning",
+      "Dynamic programming table",
+      "Heap with partial sums"
+    ],
+    "correct": 1,
+    "explanation": "Backtracking with pruning avoids unnecessary exploration. At each step, try including a candidate multiple times until the sum exceeds the target."
+  },
+  {
+    "title": "Word Search",
+    "difficulty": "medium",
+    "description": "Given an m x n grid of characters and a string word, return true if word exists in the grid. The word can be constructed from letters of sequentially adjacent cells, horizontally or vertically.",
+    "example": "Input: board = [[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], word = \"ABCCED\"\nOutput: true",
+    "question": "What is the standard approach?",
+    "options": [
+      "BFS with queue",
+      "Backtracking DFS with visited set",
+      "Hash map lookup of neighbors",
+      "Dynamic programming"
+    ],
+    "correct": 1,
+    "explanation": "Backtracking DFS works best. For each starting cell, explore neighbors recursively while marking visited cells to avoid reuse."
+  },
+  {
+    "title": "Longest Palindromic Substring",
+    "difficulty": "medium",
+    "description": "Given a string s, return the longest palindromic substring in s.",
+    "example": "Input: s = \"babad\"\nOutput: \"bab\" or \"aba\"",
+    "question": "Which algorithm achieves O(n^2) time and O(1) space?",
+    "options": [
+      "Dynamic programming table",
+      "Expand around center",
+      "Manacher’s algorithm",
+      "Hash map with rolling hash"
+    ],
+    "correct": 1,
+    "explanation": "Expand around each center (2n-1 centers) and grow outward as long as it's a palindrome. Runs in O(n^2) time with O(1) space."
+  },
+  {
+    "title": "Palindrome Partitioning",
+    "difficulty": "medium",
+    "description": "Given a string s, partition s such that every substring of the partition is a palindrome. Return all possible palindrome partitioning of s.",
+    "example": "Input: s = \"aab\"\nOutput: [[\"a\",\"a\",\"b\"],[\"aa\",\"b\"]]",
+    "question": "Which algorithm is suitable?",
+    "options": [
+      "Dynamic programming only",
+      "Backtracking recursion with palindrome check",
+      "Greedy splitting",
+      "Two pointers"
+    ],
+    "correct": 1,
+    "explanation": "Backtracking is suitable. At each step, choose a palindrome prefix, then recursively partition the rest of the string."
+  },
+  {
+    "title": "Sudoku Solver",
+    "difficulty": "hard",
+    "description": "Write a program to solve a Sudoku puzzle by filling the empty cells. A sudoku solution must satisfy all constraints of digits 1–9 in rows, columns, and 3x3 subgrids.",
+    "example": "Input: board = [[\"5\",\"3\",\".\",\".\",\"7\",\".\",\".\",\".\",\".\"], ...]\nOutput: solved sudoku board",
+    "question": "What algorithm is commonly used?",
+    "options": [
+      "Dynamic programming",
+      "Backtracking with constraints",
+      "Greedy filling",
+      "Randomized guessing"
+    ],
+    "correct": 1,
+    "explanation": "Backtracking is standard: try filling each empty cell with valid digits and recurse. If stuck, backtrack. Constraint propagation can prune choices."
+  },
+  {
+    "title": "House Robber",
+    "difficulty": "medium",
+    "description": "You are a professional robber planning to rob houses along a street. Each house has some money, but adjacent houses have security systems. Return the maximum amount you can rob without alerting the police.",
+    "example": "Input: [2,7,9,3,1]\nOutput: 12\nExplanation: Rob houses 2, 9, 1.",
+    "question": "What technique solves this optimally?",
+    "options": [
+      "Greedy skipping",
+      "Dynamic programming",
+      "Backtracking",
+      "Divide and conquer"
+    ],
+    "correct": 1,
+    "explanation": "DP tracks max money up to each house: dp[i] = max(dp[i-1], dp[i-2]+nums[i])."
+  },
+  {
+    "title": "House Robber II",
+    "difficulty": "medium",
+    "description": "Houses are arranged in a circle. You cannot rob both the first and last house. Return the maximum money possible.",
+    "example": "Input: [2,3,2]\nOutput: 3",
+    "question": "What’s the key trick?",
+    "options": [
+      "Convert to tree DP",
+      "Break into two linear rob problems",
+      "Use heap to maximize values",
+      "Binary search over ranges"
+    ],
+    "correct": 1,
+    "explanation": "Since first and last are neighbors, solve two cases: rob [0..n-2] or [1..n-1]."
+  },
+  {
+    "title": "Coin Change",
+    "difficulty": "medium",
+    "description": "You are given coins of different denominations and an amount. Find the fewest coins to make up that amount. If not possible, return -1.",
+    "example": "Input: coins = [1,2,5], amount = 11\nOutput: 3\nExplanation: 11 = 5+5+1.",
+    "question": "Which method works best?",
+    "options": [
+      "Greedy with largest coin",
+      "Dynamic programming (bottom-up)",
+      "DFS backtracking",
+      "Binary search"
+    ],
+    "correct": 1,
+    "explanation": "DP: dp[i] = min coins to make amount i. Time O(amount * coins)."
+  },
+  {
+    "title": "Coin Change II",
+    "difficulty": "medium",
+    "description": "You are given coins and a total amount. Return the number of combinations that make up the amount.",
+    "example": "Input: coins = [1,2,5], amount = 5\nOutput: 4\nExplanation: (5), (2+2+1), (2+1+1+1), (1+1+1+1+1).",
+    "question": "What’s the approach?",
+    "options": [
+      "Dynamic programming counting ways",
+      "Greedy with largest coin",
+      "Recursion with pruning",
+      "Heap to store sums"
+    ],
+    "correct": 0,
+    "explanation": "Use 1D DP: dp[i] += dp[i-coin] for each coin. Order matters for combinations."
+  },
+  {
+    "title": "Number of Islands",
+    "difficulty": "medium",
+    "description": "Given a 2D grid of '1's (land) and '0's (water), count the number of islands. An island is formed by connecting adjacent lands horizontally or vertically.",
+    "example": "Input: [[\"1\",\"1\",\"0\",\"0\"],[\"1\",\"0\",\"0\",\"0\"],[\"0\",\"0\",\"1\",\"0\"],[\"0\",\"0\",\"0\",\"1\"]]\nOutput: 3",
+    "question": "What is the standard method?",
+    "options": [
+      "DFS or BFS traversal",
+      "Union-Find disjoint set",
+      "Greedy scanning",
+      "Binary search"
+    ],
+    "correct": 0,
+    "explanation": "DFS/BFS floods connected components to count islands. Union-Find is also valid."
+  }
+
+
+
+
+
+]
