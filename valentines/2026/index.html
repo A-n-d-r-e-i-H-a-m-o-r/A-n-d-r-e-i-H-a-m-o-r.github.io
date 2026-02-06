@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Valentine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --text-color: #d6336c;
+            --petal-color: #ff8fa3;
+            --vignette-deep: #ff8fa3;
+            --vignette-mid: #ffb3c1;
+            --vignette-soft: #fcf0f3;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+
+            /* Pink Vignette Gradient */
+            background-color: var(--vignette-soft);
+            background-image:
+                radial-gradient(circle at center, var(--vignette-soft), rgba(255, 255, 255, 0) 65%),
+                radial-gradient(circle at 0% 0%, var(--vignette-mid) 0%, transparent 55%),
+                radial-gradient(circle at 100% 0%, var(--vignette-mid) 0%, transparent 55%),
+                radial-gradient(circle at 0% 100%, var(--vignette-mid) 0%, transparent 55%),
+                radial-gradient(circle at 100% 100%, var(--vignette-mid) 0%, transparent 55%);
+
+            font-family: 'Great Vibes', cursive;
+        }
+
+        /* Ribbon Styles */
+        #ribbon {
+            z-index: 999;
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 0;
+            width: 100vw;
+            height: 4rem;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        #ribbon .bow {
+            z-index: 999;
+            left: 50%;
+            top: 50%;
+            position: absolute;
+            width: 20rem;
+            height: 10rem;
+            background-image: url(https://pics.clipartpng.com/midle/Beautiful_Red_Bow_PNG_Clipart-518.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+
+        #ribbon .bow.hide {
+            z-index: 0;
+            transition: transform 2s ease-in-out, opacity .1s ease 2s;
+            transform: translate(-50%, -50%) translateY(-2000rem) rotate(360deg);
+            opacity: 0;
+            transform-origin: top left;
+        }
+
+        #ribbon .ribbon--r,
+        #ribbon .ribbon--l {
+            z-index: 0;
+            position: absolute;
+            background-color: #a7002c;
+            width: 50vw;
+            height: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        #ribbon .ribbon--r {
+            z-index: 0;
+            right: 0;
+        }
+
+        #ribbon .ribbon--r.hide {
+            z-index: 0;
+            transition: transform 5s ease-in-out;
+            transform: translateY(-50%) translateX(1000rem) rotate(90deg);
+            transform-origin: bottom right;
+        }
+
+        #ribbon .ribbon--l {
+            z-index: 0;
+            left: 0;
+        }
+
+        #ribbon .ribbon--l.hide {
+            z-index: 0;
+            transition: transform 5s ease-in-out;
+            transform: translateY(-50%) translateX(-1000rem) rotate(-90deg);
+            transform-origin: bottom left;
+        }
+
+        #imgFollow {
+            z-index: 999;
+            transform: rotate(0deg);
+            width: 5rem;
+            position: fixed;
+            display: none;
+            pointer-events: none;
+        }
+
+        /* Click instruction */
+        .ribbon-instruction {
+            position: fixed;
+            top: 60%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: var(--text-color);
+            z-index: 1000;
+            animation: pulse 2s infinite;
+            display: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
+            50% { opacity: 1; transform: translateX(-50%) scale(1.05); }
+        }
+
+        .p1-heart {
+            width: 100px;
+            rotate: 45deg;
+        }
+        .p2-heart {
+            top: -20px;
+            right: -20px;
+            width: 120px;
+            rotate: 20deg;
+        }
+        /* --- Ambient Glowing Orbs --- */
+        .glow-blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: 0;
+            animation: floatBlob 15s infinite alternate ease-in-out;
+        }
+        .blob-1 { width: 500px; height: 500px; background: #ffffff; top: -10%; left: -10%; }
+        .blob-2 { width: 400px; height: 400px; background: var(--vignette-mid); bottom: -10%; right: -10%; }
+
+        @keyframes floatBlob {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, 50px) scale(1.1); }
+        }
+
+        /* --- GIF Decorations (Now Relative to Center) --- */
+        .gif-decoration {
+            position: absolute;
+            pointer-events: none;
+            z-index: 4;
+            opacity: 0.8;
+        }
+
+        .gif-br { top: 60%; right: 110%; opacity: 0.3; width: 200px; }
+        .gif-tc { top: 230px; left: 50%; transform: translateX(-50%); width: 180px; }
+        .gif-bc { left: -10%; transform: translateX(-50%); width: 210px; }
+        .gif-sparkle-r { right: -25%; width: 200px; }
+        .gif-sparkle-l { left: -25%; width: 200px; }
+        .gif-flowers {top: 230px; left: 50%; transform: translateX(-50%); width: 150px;  }
+        .gif-matcha {top: 230px; left: 25%; transform: translateX(-50%); width: 150px;  }
+        .gif-shawarma {top: 230px; left: 75%; transform: translateX(-50%); width: 150px;  }
+        /* --- The central container --- */
+        .container {
+            position: absolute;
+            text-align: center;
+            z-index: 10;
+            padding: 20px;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .container.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        h1 {
+            color: var(--text-color);
+            font-size: 5.5rem;
+            margin: 0;
+            text-shadow: 0px 0px 15px rgba(255, 255, 255, 0.9);
+            animation: pulseText 3s ease-in-out infinite;
+        }
+
+        @keyframes pulseText {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        .signature {
+            color: var(--text-color);
+            font-size: 3.5rem;
+            margin-top: 5px;
+        }
+
+        /* --- Polaroid Styling (Original Placements) --- */
+        .polaroid {
+            background-color: white;
+            padding: 12px;
+            padding-bottom: 45px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 180px;
+            position: absolute;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 2px;
+            z-index: 11;
+        }
+
+        .polaroid:hover {
+            transform: scale(1.15) rotate(0deg) !important;
+            z-index: 100;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 180px;
+            background-color: #fff5f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #d6336c;
+            font-family: sans-serif;
+            font-size: 0.9rem;
+            object-fit: cover;
+            border: 1px solid #fce4ec;
+        }
+
+        /* EXACT POSITIONING PRESERVED */
+        .p1 { top: -180px; left: -220px; transform: rotate(-12deg); }
+        .p2 { top: -200px; right: -220px; transform: rotate(12deg); }
+        .p3 { bottom: -200px; left: -210px; transform: rotate(8deg); }
+        .p4 { bottom: -180px; right: -240px; transform: rotate(-8deg); }
+
+        /* --- Petals --- */
+        .petal {
+            position: fixed;
+            top: -10%;
+            background-color: var(--petal-color);
+            border-radius: 100% 0% 100% 40%;
+            opacity: 0.8;
+            z-index: 5;
+            animation: falling linear infinite;
+        }
+
+        @keyframes falling {
+            0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.8; }
+            100% { transform: translate(150px, 110vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            h1 { font-size: 3rem; }
+            .signature { font-size: 2rem; }
+            .polaroid { width: 110px; padding-bottom: 30px; }
+            .photo-placeholder { height: 110px; }
+            .p1 { top: -140px; left: -20px; }
+            .p2 { top: -140px; right: -20px; }
+            .p3 { bottom: -150px; left: -10px; }
+            .p4 { bottom: -150px; right: -10px; }
+            .gif-decoration { width: 80px; }
+            .gif-tc { top: -100px; }
+            .gif-bc { bottom: -90px; }
+            #ribbon .bow { width: 15rem; height: 7.5rem; }
+            #imgFollow { width: 3.5rem; }
+            .ribbon-instruction { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Ribbon that needs to be cut -->
+    <div id="ribbon">
+        <div class="ribbon bow"></div>
+        <div class="ribbon ribbon--l"></div>
+        <div class="ribbon ribbon--r"></div>
+    </div>
+
+    <img id="imgFollow" class="imgFollow" src="https://upload.wikimedia.org/wikipedia/commons/7/74/Scissors_icon_black.svg" />
+
+    <!-- Main Content -->
+    <div class="glow-blob blob-1"></div>
+    <div class="glow-blob blob-2"></div>
+
+    <div class="container" id="mainContent">
+        <!-- <img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3enUzMml4YWdlNW40MGczYnEybzh5MG04YTFmZmx6NnptYnplbnlhcCZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/z6Cxq7ifVU3LyQLR1G/giphy.gif" class="gif-decoration gif-matcha"> 
+        <img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3OXZhdXVxdHUzbWU4dXVwbWRlaG1ndHlybTVtb3p2aHF5YTMyNzI0aiZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/nRppvwhFAcB22wrrfm/giphy.gif" class="gif-decoration gif-shawarma"> -->
+        <img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3YmZhdjdvaGMyZzd2MnZhbmlmazV4c2JnM2ExcXJxNWJkZGRod3M4MyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/X7mrnQbbk3L9vD9NMN/giphy.gif" class="gif-decoration gif-flowers">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmYzcW9iMHpwbDR1ZXIzMHplaXp1cHU3OHE0cXZyMXJhemEzYTFqaCZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/3OvvEXh9MU5246asQl/giphy.gif" class="gif-decoration gif-sparkle-l">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmYzcW9iMHpwbDR1ZXIzMHplaXp1cHU3OHE0cXZyMXJhemEzYTFqaCZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/3OvvEXh9MU5246asQl/giphy.gif" class="gif-decoration gif-sparkle-r">
+        <h1>Will you be my valentine?</h1>
+        <p class="signature">- Bal</p>
+
+        <div class="polaroid p1">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYzZoNDhod2ljaGtwZ3h0NGs5M3FyaXpvamVzYnRmcHhjaXl5ZHRkMSZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/UjdYsOVZP0thqDddtV/giphy.gif" class="gif-decoration p1-heart">
+            <img src="./assets/20260123_141827.jpg" class="photo-placeholder">
+        </div>
+        <div class="polaroid p2">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExY24xdHdvcmNoeTRuNDRiaWl1c3RuNzF4a25scmNjMTFhN3Z4cXZxeiZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/vNW1UQEESEXv6lqfn4/giphy.gif" class="gif-decoration p2-heart">
+            <video class="photo-placeholder" autoplay loop muted playsinline>
+                <source src="./assets/20251222_094925.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="polaroid p3">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHRzeTlodmo0NzAyamo3czlvZWEzdXF6a3VhOXNiYXhxbmU0YnhpZSZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/fSAxCC2BDAmC9kxl0N/giphy.gif" class="gif-decoration p2-heart">
+        <video class="photo-placeholder" autoplay loop muted playsinline>
+            <source src="./assets/20260118_145133.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+            </video></div>
+        <div class="polaroid p4"><img src="./assets/20251120_182501(1).jpg" class="photo-placeholder"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            // Always show ribbon on page load
+            $('#ribbon').delay(200).fadeIn();
+            $('#imgFollow').delay(500).fadeIn();
+            $('.ribbon-instruction').delay(500).fadeIn();
+
+            // Handle ribbon click to cut it
+            $(".ribbon").click(function() {
+                $(".ribbon--l").addClass("hide");
+                $(".ribbon--r").addClass("hide");
+                $(".bow").addClass("hide");
+                $("#imgFollow").hide();
+                $('.ribbon-instruction').hide();
+
+                // Show main content after ribbon animations
+                setTimeout(function() {
+                    $('#ribbon').fadeOut();
+                    $('#mainContent').addClass('visible');
+                    startPetalAnimation();
+                }, 2500);
+            });
+        });
+
+        // Make scissors follow mouse
+        $(document).mousemove(function(e) {
+            $('#imgFollow').offset({
+                left: e.pageX + 30,
+                top: e.pageY - 20
+            });
+        });
+
+        // Petal animation function
+        function startPetalAnimation() {
+            function createPetal() {
+                const petal = document.createElement('div');
+                petal.classList.add('petal');
+                const startLeft = Math.random() * window.innerWidth;
+                const size = Math.random() * 15 + 10;
+                const duration = Math.random() * 5 + 7;
+                petal.style.left = startLeft + 'px';
+                petal.style.width = size + 'px';
+                petal.style.height = (size * 1.2) + 'px';
+                petal.style.animationDuration = duration + 's';
+                const colors = ['#ff8fa3', '#ffb3c1', '#fb6f92'];
+                petal.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                document.body.appendChild(petal);
+                setTimeout(() => { petal.remove(); }, duration * 1000);
+            }
+            setInterval(createPetal, 400);
+        }
+    </script>
+
+</body>
+</html>
